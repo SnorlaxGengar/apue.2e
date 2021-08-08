@@ -1,6 +1,8 @@
 #include <limits.h>
 #include <string.h>
 
+#define ARG_MAX 4096
+
 static char envbuf[ARG_MAX];
 
 extern char **environ;

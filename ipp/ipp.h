@@ -119,6 +119,6 @@ struct ipp_hdr {
 };
 
 #define operation u.op
-#define status u.st
+/* #define status u.st */
 
 #endif /* _IPP_H */

@@ -6,6 +6,8 @@
 #define _IO_file_flags	_flags
 #define BUFFERSZ(fp)	(fp)->_bf._size
 #else
+#define _IO_UNBUFFERED        0x0002
+#define _IO_LINE_BUF          0x0200
 #define BUFFERSZ(fp)	((fp)->_IO_buf_end - (fp)->_IO_buf_base)
 #endif
 
@@ -41,9 +43,9 @@ pr_stdio(const char *name, FILE *fp)
 	/*
 	 * The following is nonportable.
 	 */
-	if (fp->_IO_file_flags & _IO_UNBUFFERED)
+	if (fileno(fp) & _IO_UNBUFFERED)
 		printf("unbuffered");
-	else if (fp->_IO_file_flags & _IO_LINE_BUF)
+	else if (fileno(fp) & _IO_LINE_BUF)
 		printf("line buffered");
 	else /* if neither of above */
 		printf("fully buffered");
